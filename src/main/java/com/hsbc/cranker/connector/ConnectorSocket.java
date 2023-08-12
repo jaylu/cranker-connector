@@ -392,7 +392,7 @@ class ConnectorSocketImpl implements WebSocket.Listener, ConnectorSocket {
 
                     if (webSocket.isOutputClosed() || state != State.HANDLING_REQUEST) {
                         subscription.cancel();
-                        onError(new RuntimeException("Error sending response body, output channel is closed"));
+                        onError(new RuntimeException("Error sending response body, output channel is closed or state=" + state));
                         return;
                     }
 
