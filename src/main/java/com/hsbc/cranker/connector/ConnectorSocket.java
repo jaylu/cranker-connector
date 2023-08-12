@@ -283,6 +283,10 @@ class ConnectorSocketImpl implements WebSocket.Listener, ConnectorSocket {
             pingPongTask = null;
         }
         if (webSocket != null && !webSocket.isOutputClosed()) {
+            String reason = error != null ? error.getMessage() : "";
+            if (statusCode == 1011) {
+                System.out.println("Jay sending 1011 with error message:" + reason);
+            }
             webSocket.sendClose(statusCode, error != null ? error.getMessage() : "");
         }
         if (responseFuture != null && !responseFuture.isDone() && !responseFuture.isCancelled()) {
